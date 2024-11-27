@@ -4,16 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
-    <script src="app.js"></script>
-    <title>Document</title>
+    <title>Pokemon Info</title>
 </head>
+
 <body>
-    <input type="text">
-    <button id="search">Szukaj</button>
-    <section id="section">
-        <ol id="list">
+    <div class="container">
+
+        <h1>Pokemon info</h1>
+
+        <div id="search">
+            <input type="text" placeholder="Pokemon name" id="searchBar">
+            <button id="searchButton">Search</button>    
+        </div>
+        <div id="pokemonList">
             
-        </ol>
-    </section>
+        </div>
+
+    </div>
+
+    <div class="container" id="detailContainer">
+        <div id="pokemonImageBox"></div>
+        <div id="pokemonDetailBox"></div>
+    </div>
+    <script src="app.js"></script>
 </body>
 </html>

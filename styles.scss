@@ -1,0 +1,112 @@
+$font: "Poppins";
+* {
+    margin: 0;
+    padding: 0;
+}
+body{
+    font-family: $font;
+    color: rgb(83, 68, 68);
+    background-color: rgb(245, 244, 240);
+    padding:2rem 3rem
+}
+.container{
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    flex-direction: column;
+    background-color: rgb(255, 255, 255);
+    margin-bottom: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 0 25px -15px rgb(131, 124, 124);
+    padding: 2rem 3rem;
+
+
+    #search {
+        display: flex;
+        gap: 2rem;
+         
+        #searchBar{
+            border-radius: 10px;
+            padding: 0.4rem 0.75rem;
+            font-family: $font;
+            font-weight: 500;
+            font-size: 1.1rem;
+            flex: 10;
+        }
+        #searchButton{
+            flex: 1;
+            color: rgb(83, 68, 68);
+            font-weight: 500;
+            font-family: $font;
+            font-size: 1.1rem;
+            padding: 0.5rem 0.5rem;
+            border-radius: 10px;
+            border: 2px solid rgb(189, 177, 177);
+            background-color: rgb(223, 209, 209);
+            &:hover{
+                opacity: 0.9;
+                transform: scale(0.95);
+            }
+            &:active{
+                background-color: rgb(199, 181, 181);
+            }
+        }
+    }
+ 
+    #pokemonList {
+        display: flex;
+        gap: 1.5rem;
+        flex-wrap: wrap;
+        padding: 0 0.5rem;
+        flex: 1;
+        .pokemonCard {
+            background-color: rgb(245, 244, 240);
+            padding: 1rem;
+            border-radius: 15px;
+            flex: 1;
+            white-space: nowrap;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border: 2px solid rgb(229, 196, 196);
+            &:hover{
+                transform: scale(1.1);
+                opacity: 0.6;
+            }
+            &:active{
+                background-color: rgb(229, 196, 196);
+            }
+            img{
+                width: 100px;
+            }
+        }
+    }
+    &#detailContainer {
+        font-size: 1.15rem;
+        flex-direction: row;
+ 
+        img{
+            width: 110px;
+        }
+        
+        #pokemonImageBox {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        #pokemonDetailBox {
+            flex: 1;
+            display: flex;
+            flex-direction: row;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+    }
+    p::first-letter{
+        text-transform: capitalize;
+    }
+    
+
+}

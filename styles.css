@@ -1,0 +1,104 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Poppins";
+  color: rgb(83, 68, 68);
+  background-color: rgb(245, 244, 240);
+  padding: 2rem 3rem;
+}
+
+.container {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  flex-direction: column;
+  background-color: rgb(255, 255, 255);
+  margin-bottom: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 0 25px -15px rgb(131, 124, 124);
+  padding: 2rem 3rem;
+}
+.container #search {
+  display: flex;
+  gap: 2rem;
+}
+.container #search #searchBar {
+  border-radius: 10px;
+  padding: 0.4rem 0.75rem;
+  font-family: "Poppins";
+  font-weight: 500;
+  font-size: 1.1rem;
+  flex: 10;
+}
+.container #search #searchButton {
+  flex: 1;
+  color: rgb(83, 68, 68);
+  font-weight: 500;
+  font-family: "Poppins";
+  font-size: 1.1rem;
+  padding: 0.5rem 0.5rem;
+  border-radius: 10px;
+  border: 2px solid rgb(189, 177, 177);
+  background-color: rgb(223, 209, 209);
+}
+.container #search #searchButton:hover {
+  opacity: 0.9;
+  transform: scale(0.95);
+}
+.container #search #searchButton:active {
+  background-color: rgb(199, 181, 181);
+}
+.container #pokemonList {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  padding: 0 0.5rem;
+  flex: 1;
+}
+.container #pokemonList .pokemonCard {
+  background-color: rgb(245, 244, 240);
+  padding: 1rem;
+  border-radius: 15px;
+  flex: 1;
+  white-space: nowrap;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 2px solid rgb(229, 196, 196);
+}
+.container #pokemonList .pokemonCard:hover {
+  transform: scale(1.1);
+  opacity: 0.6;
+}
+.container #pokemonList .pokemonCard:active {
+  background-color: rgb(229, 196, 196);
+}
+.container #pokemonList .pokemonCard img {
+  width: 100px;
+}
+.container#detailContainer {
+  font-size: 1.15rem;
+  flex-direction: row;
+}
+.container#detailContainer img {
+  width: 110px;
+}
+.container#detailContainer #pokemonImageBox {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.container#detailContainer #pokemonDetailBox {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+.container p::first-letter {
+  text-transform: capitalize;
+}/*# sourceMappingURL=styles.css.map */
