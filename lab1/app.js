@@ -2,6 +2,7 @@ const searchBar = document.getElementById("searchBar")
 const list = document.getElementById("pokemonList")
 const detailContainer = document.getElementById("detailContainer")
 const imageBox = document.getElementById("pokemonImageBox")
+const detailBox = document.getElementById("pokemonDetailBox");
 
 const getPokemonList = async () => {
     list.innerHTML="Loading..."
@@ -32,6 +33,7 @@ window.onload = getPokemonList
 
 const getPokemonDetails = async (id) => {
     imageBox.innerHTML="Loading..."
+    detailBox.innerHTML="Loading..."
     try{
         const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}/`)
         const json = await res.json()
@@ -44,8 +46,9 @@ const getPokemonDetails = async (id) => {
 
 const showPokemonDetails = async (pokemon) => {
     imageBox.innerHTML=""
+    detailBox.innerHTML=""
     imageBox.innerHTML = `<p>${pokemon.name} #${pokemon.id}</p><img src="${pokemon.sprites.front_default}">`
-    const detailBox = document.getElementById("pokemonDetailBox");
+    
     detailBox.innerHTML = 
     `<p><strong>Types: </strong>${pokemon.types.map(el => el.type.name).join(", ")}</p> 
     <p><strong>Height: </strong>${pokemon.height}</p>
