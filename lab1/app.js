@@ -25,7 +25,7 @@ const showPokemonList = async (pokemons) => {
         const id = i+1
            
         pokemon.innerHTML=`<p>${el.name} #${id}</p><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png">`
-        pokemon.addEventListener("click", () => getPokemonDetails(id))
+        pokemon.onclick = () => getPokemonDetails(id)   
         list.appendChild(pokemon)
     })
 }
@@ -55,7 +55,3 @@ const showPokemonDetails = async (pokemon) => {
     <p><strong>Weight: </strong>${pokemon.weight}</p>
     ${pokemon.stats.map(stat => `<p><strong>${stat.stat.name}: </strong>${stat.base_stat}</p>`).join('')}`
 }
-
-// const button = document.getElementById("search")
-// button.addEventListener("click",getPokemonDetails)
-
