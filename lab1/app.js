@@ -16,7 +16,7 @@ const getPokemonList = async () => {
     }
     
 }
-const showPokemonList = async (pokemons) => {
+const showPokemonList = (pokemons) => {
     list.innerHTML=""
     pokemons.forEach((el,i) => { 
         const pokemon = document.createElement("div")
@@ -28,7 +28,21 @@ const showPokemonList = async (pokemons) => {
         pokemon.onclick = () => getPokemonDetails(id)   
         list.appendChild(pokemon)
     })
+    searchBar.oninput = () => filterPokemonsFromList(input)
 }
+
+const filterPokemonsFromList = (input) => {
+    const inputValue = input.target.value
+    console.log(inputValue);
+    
+    const currPokemonList = document.querySelectorAll(".pokemonCard")
+    currPokemonList.forEach((div,i) => {
+        const pokemonName = div.querySelector("p").textContent
+        if (!(pokemonName.includes(inputValue))) list.removeChild(el)
+    })
+
+}
+
 window.onload = getPokemonList
 
 const getPokemonDetails = async (id) => {
@@ -44,7 +58,7 @@ const getPokemonDetails = async (id) => {
     }
 }
 
-const showPokemonDetails = async (pokemon) => {
+const showPokemonDetails = (pokemon) => {
     imageBox.innerHTML=""
     detailBox.innerHTML=""
     imageBox.innerHTML = `<p>${pokemon.name} #${pokemon.id}</p><img src="${pokemon.sprites.front_default}">`
