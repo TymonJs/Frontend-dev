@@ -25,7 +25,7 @@ const PokemonList = ({pokemons}) => {
    
     if (pokemons.length===0) return (<h2>No matching pokemons</h2>);
     
-    return <div id="pokemonList">{getList()}</div>
+    return <>{getList()}</>
    
     
 }
@@ -90,8 +90,9 @@ const App = ({pokemons, pokemonDetails=null}) => {
                     onInput={(e) => filterPokemons(e.target.value)}
                 />
             </div>
-            
-            <PokemonList pokemons={pokemons}/>
+            <div id="pokemonList">
+                <PokemonList pokemons={pokemons}/>
+            </div>
         </div>
         
         < PokemonDetails pokemonDetails={pokemonDetails}/>
