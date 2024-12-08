@@ -10,7 +10,7 @@ body {
   padding: 2rem 3rem;
 }
 
-#loading {
+.loading {
   display: flex;
   justify-content: center;
 }
