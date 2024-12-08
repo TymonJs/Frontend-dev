@@ -1,101 +1,97 @@
-const searchBar = document.getElementById("searchBar")
-const list = document.getElementById("pokemonList")
+const root = ReactDOM.createRoot(document.getElementById("root"));
 let pokemonList;
-let detailContainer;
-let imageBox;
-let detailBox;
+
+const PokemonList = ({pokemons}) => {
+    
+    const getList = () => {
+        if (!Array.isArray(pokemons)) return <p>No pokemons to display</p>
+
+        return pokemons.map((pokemon,index) => {
+
+            const parts = pokemon.url.split("/");
+            const id = parts[parts.length - 2];
+            const link = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`
+
+            return (<div key={index} className="pokemonCard" onClick={() => PokemonDetails(pokemon.name)}>
+                <p>{pokemon.name} #{id}</p>
+                <img src={link} alt={pokemon.name}></img>
+            </div>);
+        })
+    }
+   
+        
+    return <>{getList()}</>
+   
+    
+}
+
+const PokemonDetails = (pokemon) => {
+    if (!pokemon) return null
+    else return null
+}
+
+const App = ({pokemons}) => {
+    return (<div id="app">
+    
+        <div className="container">
+            <h1>Pokemon Info</h1>
+            <div id="search">
+                <input
+                    type="text"
+                    placeholder="Pokemon name"
+                    id="searchBar"
+                    onInput={(e) => filterPokemons(e.target.value)}
+                />
+            </div>
+            <div id="pokemonList">
+                <PokemonList
+                    pokemons={pokemons}
+                />
+            </div>
+            {/* { <PokemonDetails pokemon={selectedPokemon} /> } */}
+        </div>
+
+        {/* <div className="container" id="detailContainer"></div> */}
+        </div>);
+
+}
+
+const renderApp = (pokemons) => {
+    
+    root.render(<App pokemons={pokemons}/>)
+}
 
 const getPokemonList = async () => {
-    list.innerHTML="Loading..."
+    
+    root.render(<h1 id="loading">Loading...</h1>)
     try{
         const res = await fetch("https://pokeapi.co/api/v2/pokemon/")
         const json = await res.json();
-        pokemonList = json.results
+        return json.results
+        
     }
     catch (error){
-        list.innerHTML="Failed to load the Pokemons"
-    }
-    
-}
-const renderPokemonList = async () => {
-    
-    await getPokemonList()
-    
-    showPokemonList(pokemonList)
-}
-
-const showPokemonList = (pokemons) => {
-    list.innerHTML=""
-    
-    pokemons.forEach((el,i) => { 
-        const pokemon = document.createElement("div")
-        pokemon.classList.add("pokemonCard");
+        console.log("API failed to load the pokemons");
         
-        
-        const parts = el["url"].split("/")
-        const id = parts[parts.length-2]
-        
-        pokemon.innerHTML=`<p>${el.name} #${id}</p><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png">`
-        pokemon.onclick = () => getPokemonDetails(id)   
-        list.appendChild(pokemon)
-    })
-    searchBar.oninput = (input) => filterPokemonsFromList(input)
+    }    
 }
 
-const filterPokemonsFromList = (input) => {
-    const inputValue = input.target.value.toLowerCase()
-
-    while (list.firstChild){
-        list.removeChild(list.firstChild);
-    }
-    
-    const filteredPokemons = pokemonList.filter(curr => curr.name.includes(inputValue))
-    
-    showPokemonList(filteredPokemons)
-    
-}
-
-window.onload = renderPokemonList
-
-const getPokemonDetails = async (id) => {
-    
-    if (!(document.querySelector("#detailContainer"))){
-
-        detailContainer = document.createElement("div")
-        detailContainer.classList.add("container")
-        detailContainer.id = "detailContainer"
-
-        imageBox = document.createElement("div")
-        imageBox.id = "pokemonImageBox"
-        detailContainer.appendChild(imageBox)
-
-        detailBox = document.createElement("div")
-        detailBox.id = "pokemonDetailBox"
-        detailContainer.appendChild(detailBox)
-
-        document.body.appendChild(detailContainer)
-    }
-
-    imageBox.innerHTML="Loading..."
-    detailBox.innerHTML="Loading..."
+const filterPokemons = (input) => {
+    const inputValue = input.toLowerCase()
     try{
-        const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}/`)
-        const json = await res.json()
-        showPokemonDetails(json)
+        const filteredPokemons = pokemonList.filter(el => el.name.toLowerCase().includes(inputValue))
+        
+        renderApp(filteredPokemons);
     }
-    catch (error){
-        detailContainer.innerHTML="Loading the Pokemon's details has failed"
+    catch {
+        console.log("Can't filter through pokemons that heaven't been loaded");  
     }
 }
 
-const showPokemonDetails = (pokemon) => {
-    imageBox.innerHTML=""
-    detailBox.innerHTML=""
-    imageBox.innerHTML = `<p>${pokemon.name} #${pokemon.id}</p><img src="${pokemon.sprites.front_default}">`
+const main = async () => {
+    pokemonList = await getPokemonList()
+    root.render(<App pokemons={pokemonList}/>)
     
-    detailBox.innerHTML = 
-    `<p><strong>Types: </strong>${pokemon.types.map(el => el.type.name).join(", ")}</p> 
-    <p><strong>Height: </strong>${pokemon.height}</p>
-    <p><strong>Weight: </strong>${pokemon.weight}</p>
-    ${pokemon.stats.map(stat => `<p><strong>${stat.stat.name}: </strong>${stat.base_stat}</p>`).join('')}`
 }
+
+main()

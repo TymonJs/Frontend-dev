@@ -12,7 +12,7 @@
 
 <body>
     <div id="root">
-        <h1>hejka</h1>
+        
 
     </div>
 
@@ -27,7 +27,20 @@
     <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    <script type="text/babel" src="script.js"></script>
+    <script type="text/babel">
+        function HelloJSX({title}){
+            return (<>
+                <h1>{title + "!!!"}</h1>
+                <h1>{title + "???"}</h1>
+            </>);
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById("root"))
+        root.render(<HelloJSX title="root"/>)
+
+        const container = ReactDOM.createRoot(document.getElementById("container"))
+        container.render(<HelloJSX title="Witaj w JSX"/>)
+    </script>
 
 </body>
 </html>
