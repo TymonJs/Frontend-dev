@@ -120,7 +120,6 @@ const getPokemonList = async () => {
 }
 
 const filterPokemons = (input) => {
-    console.log(document.getElementById("pokemonList"));
     
     if (!list) list = ReactDOM.createRoot(document.getElementById("pokemonList"))  
     
