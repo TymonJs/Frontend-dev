@@ -99,11 +99,6 @@ const App = ({pokemons, pokemonDetails=null}) => {
 
 }
 
-const renderApp = (pokemons,pokemonDetails=null) => {
-    
-    root.render(<App pokemons={pokemons} pokemonDetails={pokemonDetails}/>)
-}
-
 const getPokemonList = async () => {
     
     root.render(<h1 className="loading">Loading...</h1>)
