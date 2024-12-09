@@ -78,8 +78,7 @@ const PokemonDetails = ({pokemonDetails = null}) => {
 }
 
 const App = ({pokemons, pokemonDetails=null}) => {
-    return (<div id="app">
-    
+    return (<>
         <div className="container">
             <h1>Pokemon Info</h1>
             <div id="search">
@@ -96,10 +95,7 @@ const App = ({pokemons, pokemonDetails=null}) => {
         </div>
         
         < PokemonDetails pokemonDetails={pokemonDetails}/>
-        
-    
-
-        </div>);
+        </>);
 
 }
 
@@ -124,6 +120,8 @@ const getPokemonList = async () => {
 }
 
 const filterPokemons = (input) => {
+    console.log(document.getElementById("pokemonList"));
+    
     if (!list) list = ReactDOM.createRoot(document.getElementById("pokemonList"))  
     
 
@@ -134,14 +132,13 @@ const filterPokemons = (input) => {
     }
     catch (e) {
         console.log(e);
-        
-        console.log("Can't filter through pokemons that heaven't been loaded");  
     }
 }
 
 const main = async () => {
     pokemonList = await getPokemonList()
     root.render(<App pokemons={pokemonList}/>)  
+    
 }
 
 main()
