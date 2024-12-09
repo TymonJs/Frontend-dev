@@ -67,6 +67,8 @@ body {
 .container#detailContainer {
   font-size: 1.15rem;
   flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 .container#detailContainer img {
   width: 110px;

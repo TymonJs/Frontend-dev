@@ -8,7 +8,7 @@ const PokemonList = ({pokemons}) => {
     
     const getList = () => {
         if (!Array.isArray(pokemons)) return <p>No pokemons to display</p>
-        
+
         if (pokemons.length===0) return (<h2>No matching pokemons</h2>);
 
         return pokemons.map((pokemon,index) => {
@@ -35,6 +35,7 @@ const getPokemonDetails = async (id) => {
     if (!detailContainer) detailContainer = ReactDOM.createRoot(document.getElementById("detailContainer"))
     
     detailContainer.render(<PokemonDetails pokemonDetails={loadingText}/>)//pokemons,loadingText
+
     try{
         const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}/`)
         const json = await res.json()
@@ -79,6 +80,8 @@ const PokemonDetails = ({pokemonDetails = null}) => {
 }
 
 const App = ({pokemons, pokemonDetails=null}) => {
+
+    
     return (<>
         <div className="container">
             <h1>Pokemon Info</h1>
