@@ -8,6 +8,8 @@ const PokemonList = ({pokemons}) => {
     
     const getList = () => {
         if (!Array.isArray(pokemons)) return <p>No pokemons to display</p>
+        
+        if (pokemons.length===0) return (<h2>No matching pokemons</h2>);
 
         return pokemons.map((pokemon,index) => {
 
@@ -23,7 +25,6 @@ const PokemonList = ({pokemons}) => {
         })
     }
    
-    if (pokemons.length===0) return (<h2>No matching pokemons</h2>);
     
     return <>{getList()}</>
    
