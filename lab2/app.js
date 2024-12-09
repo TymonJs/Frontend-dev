@@ -59,7 +59,7 @@ const PokemonDetails = ({pokemonDetails = null}) => {
     const {name, id, sprites: {front_default}, types, weight, height, stats} = pokemonDetails;
 
     return <div className="container" id="detailContainer">
-        <div id="pokemonImageBox" key={1}>
+        <div id="pokemonImageBox">
             <p>{name} #{id}</p>
             <img src={front_default}></img>
         </div>
