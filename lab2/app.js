@@ -35,7 +35,6 @@ const getPokemonDetails = async (id,pokemons) => {
     // if (!detailContainer) detailContainer = ReactDOM.createRoot(document.getElementById("detailContainer"))
     
     // detailContainer.render(<PokemonDetails pokemonDetails={loadingText}/>)//pokemons,loadingText
-    // document.getElementById("searchBar").value=""
     try{
         const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}/`)
         const json = await res.json()
