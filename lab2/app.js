@@ -18,7 +18,7 @@ const PokemonList = ({pokemons}) => {
 
             const link = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`
             
-            return (<div key={index} className="pokemonCard" onClick={() => getPokemonDetails(id)}>
+            return (<div key={index} className="pokemonCard" onClick={() => getPokemonDetails(id,pokemons)}>
                 <p>{pokemon.name} #{id}</p>
                 <img src={link} alt={pokemon.name}></img>
             </div>);
@@ -31,15 +31,16 @@ const PokemonList = ({pokemons}) => {
     
 }
 
-const getPokemonDetails = async (id) => {
-    if (!detailContainer) detailContainer = ReactDOM.createRoot(document.getElementById("detailContainer"))
+const getPokemonDetails = async (id,pokemons) => {
+    // if (!detailContainer) detailContainer = ReactDOM.createRoot(document.getElementById("detailContainer"))
     
-    detailContainer.render(<PokemonDetails pokemonDetails={loadingText}/>)//pokemons,loadingText
-
+    // detailContainer.render(<PokemonDetails pokemonDetails={loadingText}/>)//pokemons,loadingText
+    // document.getElementById("searchBar").value=""
     try{
         const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}/`)
         const json = await res.json()
-        detailContainer.render(<PokemonDetails pokemonDetails={json}/>)
+        // detailContainer.render(<PokemonDetails pokemonDetails={json}/>)
+        root.render(<App pokemons={pokemons} pokemonDetails={json}/>)
     }
     catch (error){
         detailContainer.render()
@@ -90,7 +91,7 @@ const App = ({pokemons, pokemonDetails=null}) => {
                     type="text"
                     placeholder="Pokemon name"
                     id="searchBar"
-                    onInput={(e) => filterPokemons(e.target.value)}
+                    onInput={(e) => filterPokemons(e.target.value,pokemonDetails)}
                 />
             </div>
             <div id="pokemonList">
@@ -118,15 +119,17 @@ const getPokemonList = async () => {
     }    
 }
 
-const filterPokemons = (input) => {
+const filterPokemons = (input,pokemonDetails) => {
     
-    if (!list) list = ReactDOM.createRoot(document.getElementById("pokemonList"))  
+    // if (!list) list = ReactDOM.createRoot(document.getElementById("pokemonList"))  
     
 
     const inputValue = input.toLowerCase()
     try{
         const filteredPokemons = pokemonList.filter(el => el.name.toLowerCase().includes(inputValue))
-        list.render(<PokemonList pokemons={filteredPokemons}/>);
+        // list.render(<PokemonList pokemons={filteredPokemons}/>);
+        
+        root.render(<App pokemons={filteredPokemons} pokemonDetails={pokemonDetails}/>)
     }
     catch (e) {
         console.log(e);
