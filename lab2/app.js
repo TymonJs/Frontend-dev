@@ -1,8 +1,8 @@
 const root = ReactDOM.createRoot(document.getElementById("root"));
 const loadingText = "Loading..."
 let pokemonList;
-let detailContainer;
-let list;
+// let detailContainer;
+// let list;
 
 const PokemonList = ({pokemons}) => {
     
@@ -42,7 +42,7 @@ const getPokemonDetails = async (id,pokemons) => {
         root.render(<App pokemons={pokemons} pokemonDetails={json}/>)
     }
     catch (error){
-        detailContainer.render()
+        root.render()
     }
 }
 
