@@ -64,28 +64,30 @@ body {
 .container #pokemonList .pokemonCard img {
   width: 100px;
 }
-.container#detailContainer {
+
+#detailContainer {
   font-size: 1.15rem;
+  display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
 }
-.container#detailContainer img {
+#detailContainer img {
   width: 110px;
 }
-.container#detailContainer #pokemonImageBox {
+#detailContainer #pokemonImageBox {
   flex: 1;
   display: flex;
   align-items: center;
   flex-direction: column;
 }
-.container#detailContainer #pokemonDetailBox {
+#detailContainer #pokemonDetailBox {
   flex: 1;
   display: flex;
   flex-direction: row;
   gap: 2rem;
   flex-wrap: wrap;
 }
-.container p::first-letter {
+#detailContainer p::first-letter {
   text-transform: capitalize;
 }/*# sourceMappingURL=styles.css.map */

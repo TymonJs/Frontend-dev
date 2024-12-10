@@ -58,7 +58,7 @@ const PokemonDetails = ({pokemonDetails = null}) => {
 
     const {name, id, sprites: {front_default}, types, weight, height, stats} = pokemonDetails;
 
-    return <div className="container" id="detailContainer">
+    return <div id="detailContainer">
         <div id="pokemonImageBox">
             <p>{name} #{id}</p>
             <img src={front_default}></img>
@@ -93,12 +93,16 @@ const App = ({pokemons, pokemonDetails=null}) => {
                     onInput={(e) => filterPokemons(e.target.value,pokemonDetails)}
                 />
             </div>
+            < PokemonDetails pokemonDetails={pokemonDetails}/>
+        </div>
+
+        <div className="container">
             <div id="pokemonList">
-                <PokemonList pokemons={pokemons}/>
+                <PokemonList pokemons={pokemons.slice(0,20)}/>
             </div>
         </div>
         
-        < PokemonDetails pokemonDetails={pokemonDetails}/>
+        {/* < PokemonDetails pokemonDetails={pokemonDetails}/> */}
         </>);
 
 }
@@ -107,7 +111,7 @@ const getPokemonList = async () => {
     
     root.render(<h1 className="loading">Loading...</h1>)
     try{
-        const res = await fetch("https://pokeapi.co/api/v2/pokemon/")
+        const res = await fetch("https://pokeapi.co/api/v2/pokemon/?limit=1000")
         const json = await res.json();
         return json.results
         

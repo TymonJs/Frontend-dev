@@ -84,34 +84,64 @@ body{
             }
         }
     }
-    &#detailContainer {
-        font-size: 1.15rem;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
+    // &#detailContainer {
+    //     font-size: 1.15rem;
+    //     flex-direction: row;
+    //     justify-content: center;
+    //     align-items: center;
  
-        img{
-            width: 110px;
-        }
+    //     img{
+    //         width: 110px;
+    //     }
         
-        #pokemonImageBox {
-            flex: 1;
-            display: flex;
-            align-items: center;
-            flex-direction: column;
-        }
+    //     #pokemonImageBox {
+    //         flex: 1;
+    //         display: flex;
+    //         align-items: center;
+    //         flex-direction: column;
+    //     }
 
-        #pokemonDetailBox {
-            flex: 1;
-            display: flex;
-            flex-direction: row;
-            gap: 2rem;
-            flex-wrap: wrap;
-        }
+    //     #pokemonDetailBox {
+    //         flex: 1;
+    //         display: flex;
+    //         flex-direction: row;
+    //         gap: 2rem;
+    //         flex-wrap: wrap;
+    //     }
+    // }
+    // p::first-letter{
+    //     text-transform: capitalize;
+    // }
+    
+
+}
+#detailContainer{
+    font-size: 1.15rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    img{
+        width: 110px;
+    }
+    
+    #pokemonImageBox {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    #pokemonDetailBox {
+        flex: 1;
+        display: flex;
+        flex-direction: row;
+        gap: 2rem;
+        flex-wrap: wrap;
     }
     p::first-letter{
         text-transform: capitalize;
     }
-    
-
 }
+
