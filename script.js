@@ -1,0 +1,12 @@
+const types = [
+    'normal',   'fighting', 'flying',
+    'poison',   'ground',   'rock',
+    'bug',      'ghost',    'steel',
+    'fire',     'water',    'grass',
+    'electric', 'psychic',  'ice',
+    'dragon',   'dark',     'fairy',
+    'stellar',  'unknown'
+  ]
+
+types.sort()
+console.log(types);

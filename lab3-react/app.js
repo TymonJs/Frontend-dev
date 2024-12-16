@@ -1,8 +1,6 @@
 const root = ReactDOM.createRoot(document.getElementById("root"));
 const loadingText = "Loading..."
 let pokemonList;
-// let detailContainer;
-// let list;
 
 const PokemonList = ({pokemons}) => {
     
@@ -32,13 +30,9 @@ const PokemonList = ({pokemons}) => {
 }
 
 const getPokemonDetails = async (id,pokemons) => {
-    // if (!detailContainer) detailContainer = ReactDOM.createRoot(document.getElementById("detailContainer"))
-    
-    // detailContainer.render(<PokemonDetails pokemonDetails={loadingText}/>)//pokemons,loadingText
     try{
         const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}/`)
         const json = await res.json()
-        // detailContainer.render(<PokemonDetails pokemonDetails={json}/>)
         root.render(<App pokemons={pokemons} pokemonDetails={json}/>)
     }
     catch (error){
@@ -79,20 +73,26 @@ const PokemonDetails = ({pokemonDetails = null}) => {
 
 }
 
+const Navigation = ({pokemonDetails}) => {
+    return <>
+    <h1>Pokemon Info</h1>
+    <div id="search">
+        <input
+            type="text"
+            placeholder="Pokemon name"
+            id="searchBar"
+            onInput={(e) => filterPokemons(e.target.value,pokemonDetails)}
+        />
+    </div>
+    </>
+}
+
 const App = ({pokemons, pokemonDetails=null}) => {
 
     
     return (<>
         <div className="container">
-            <h1>Pokemon Info</h1>
-            <div id="search">
-                <input
-                    type="text"
-                    placeholder="Pokemon name"
-                    id="searchBar"
-                    onInput={(e) => filterPokemons(e.target.value,pokemonDetails)}
-                />
-            </div>
+            <Navigation pokemonDetails={pokemonDetails}/>
             < PokemonDetails pokemonDetails={pokemonDetails}/>
         </div>
 
@@ -102,7 +102,6 @@ const App = ({pokemons, pokemonDetails=null}) => {
             </div>
         </div>
         
-        {/* < PokemonDetails pokemonDetails={pokemonDetails}/> */}
         </>);
 
 }
@@ -124,14 +123,11 @@ const getPokemonList = async (limit=20) => {
 
 const filterPokemons = (input,pokemonDetails) => {
     
-    // if (!list) list = ReactDOM.createRoot(document.getElementById("pokemonList"))  
     
 
     const inputValue = input.toLowerCase()
     try{
         const filteredPokemons = pokemonList.filter(el => el.name.toLowerCase().includes(inputValue))
-        // list.render(<PokemonList pokemons={filteredPokemons}/>);
-        
         root.render(<App pokemons={filteredPokemons} pokemonDetails={pokemonDetails}/>)
     }
     catch (e) {
@@ -143,7 +139,9 @@ const main = async () => {
     root.render(<h1 className="loading">Loading...</h1>)
     pokemonList = await getPokemonList(20)
     root.render(<App pokemons={pokemonList}/>)  
+    
     pokemonList= await getPokemonList(1000)
+    console.log("loaded");
     
 }
 

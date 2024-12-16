@@ -1,0 +1,197 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Poppins";
+  color: rgb(83, 68, 68);
+  background-color: rgb(245, 244, 240);
+  padding: 1rem 5rem;
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+}
+
+.container {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  flex-direction: column;
+  background-color: rgb(255, 255, 255);
+  margin-bottom: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 0 25px -15px rgb(131, 124, 124);
+  padding: 2rem 3rem;
+  position: relative;
+}
+.container #search {
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+}
+.container #search #searchBar {
+  border-radius: 10px;
+  padding: 0.4rem 0.75rem;
+  font-family: "Poppins";
+  font-weight: 500;
+  font-size: 1.1rem;
+}
+.container #pokemonList {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 0 0.5rem;
+  flex: 1;
+}
+.container #pokemonList .pokemonCard {
+  background-color: rgb(245, 244, 240);
+  padding: 1rem;
+  border-radius: 15px;
+  flex: 1;
+  white-space: nowrap;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 2px solid rgb(229, 196, 196);
+  position: relative;
+}
+.container #pokemonList .pokemonCard:hover {
+  transform: scale(1.08);
+}
+.container #pokemonList .pokemonCard:active:not(.heart-active) {
+  background-color: rgb(229, 196, 196);
+}
+.container #pokemonList .pokemonCard:has(.heart:active) {
+  background-color: rgb(245, 244, 240);
+}
+.container #pokemonList .pokemonCard .pokemonImg {
+  width: 100px;
+}
+.container #pokemonList .pokemonCard p::first-letter {
+  text-transform: capitalize;
+}
+.container #pokemonList .pokemonCard:hover > .heart {
+  display: block;
+}
+.container #pokemonList .pokemonCard:hover > .heart:hover {
+  transform: scale(1.1);
+}
+.container #pokemonList .pokemonCard:hover > .heart:active {
+  transform: scale(1.2);
+}
+.container #pokemonList .pokemonCard .heart {
+  position: absolute;
+  font-size: 1.5rem;
+  right: 0.75rem;
+  bottom: 0.75rem;
+  display: none;
+}
+.container #pokemonList .pokemonCard .favorite {
+  color: red;
+  display: block;
+}
+
+#detailContainer {
+  font-size: 1.15rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+#detailContainer img {
+  width: 110px;
+}
+#detailContainer #pokemonImageBox {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+#detailContainer #pokemonDetailBox {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+#detailContainer p::first-letter {
+  text-transform: capitalize;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+#navigation {
+  display: flex;
+  align-items: center;
+  gap: 5rem;
+  justify-content: space-between;
+  flex-direction: row;
+  background-color: rgb(255, 255, 255);
+  margin-bottom: 2rem;
+  border-radius: 30px;
+  box-shadow: 0 0 25px -15px rgb(131, 124, 124);
+  padding: 1.5rem 5rem;
+}
+#navigation nav {
+  display: flex;
+  gap: 2rem;
+}
+
+#home, .warning {
+  text-align: center;
+}
+
+#dropdown {
+  border-radius: 10px;
+  padding: 0.4rem 0.75rem;
+  font-family: "Poppins";
+  font-weight: 500;
+  font-size: 1rem;
+  border: 2px inset rgb(118, 118, 118);
+}
+#dropdown option {
+  padding: 0.1rem 0.5rem;
+}
+#dropdown option:nth-child(2n) {
+  background-color: #e7e0c2;
+}
+#dropdown option:nth-child(2n+1) {
+  background-color: #f5f3eb;
+}
+#dropdown option:hover {
+  background-color: brown;
+}
+
+select::-webkit-scrollbar {
+  width: 0.5rem; /* Width of the scrollbar */
+}
+
+select::-webkit-scrollbar-track {
+  background-color: #f5edd3;
+}
+
+select::-webkit-scrollbar-thumb {
+  border-radius: 3px; /* Rounded corners */
+}
+
+select::-webkit-scrollbar-thumb:hover {
+  background-color: rgb(207, 188, 151);
+}
+
+#limitbar {
+  border-radius: 10px;
+  padding: 0.4rem 0.75rem;
+  font-family: "Poppins";
+  font-weight: 500;
+  font-size: 1rem;
+  width: 3rem;
+  border: 2px inset rgb(118, 118, 118);
+}/*# sourceMappingURL=style.css.map */

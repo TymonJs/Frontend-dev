@@ -1,1 +1,5 @@
 *.css.map
+node_modules
+default-app
+recipes
+my-first-next-app
