@@ -2,40 +2,45 @@
 
 import { useState, useEffect } from "react"
 
-export default function Heart({id,list}){
-    console.log(id);
+export default function Heart({id,list,unheart}){
     
-    const updateFavorites = (e) => {
-        
+    const updateFavorites = (e,unheart) => {
+        console.log("asd");
         
         const favs = localStorage.getItem("favorites")
 
         if (!favs) {
             localStorage.setItem("favorites",id)
-            e.target.classList.toggle("favorite")
-            return
         }
+        else{
+            const arr = favs.split(",")
+            if (arr.includes(id)){
+                const f = arr.reduce((acc,c) =>{
+                    if (c!==id) return [...acc,c]
+                    return acc
+                },[])
+                localStorage.setItem("favorites",f.join(","))
+            }
+            else{
+                arr.push(id)
+                localStorage.setItem("favorites",arr.join(","))
+            }
+        }
+            
 
-        const arr = favs.split(",")
-        if (arr.includes(id)){
-            const f = arr.reduce((acc,c) =>{
-                if (c!==id) return [...acc,c]
-                return acc
-            },[])
-            localStorage.setItem("favorites",f.join(","))
-            e.target.classList.toggle("favorite")
-            return
-        }
-        
-        arr.push(id)
-        localStorage.setItem("favorites",arr.join(","))
-        e.target.classList.toggle("favorite")
+        if (unheart) e.target.classList.toggle("favorite")
     }
     const [cl,setCl] = useState("")
     useEffect(() => {    
+        // console.log(localStorage.getItem("favorites").split(",").includes(id)?"favorite":"")
         setCl(localStorage.getItem("favorites").split(",").includes(id)?"favorite":"")
-    },[])
+    },[id])
   
     
-    return <i className={`fa-solid fa-heart heart ${cl}`} onClick={updateFavorites}></i>
+    return <i className={`fa-solid fa-heart heart ${cl}`} onClick={(e) => {
+        updateFavorites(e,unheart)
+        window.dispatchEvent(new Event("storageUpdate"))
+        }}>
+
+    </i>
 }

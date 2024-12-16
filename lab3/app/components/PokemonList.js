@@ -2,33 +2,7 @@ import Link from 'next/link';
 import "@fortawesome/fontawesome-free/css/all.css";
 import Heart from './Heart';
 
-const getPokemonList = async (limit) => {
-    try{
-        const res = await fetch(`https://pokeapi.co/api/v2/pokemon/?limit=${limit}`)
-        const json = await res.json();
-        return json.results
-    }
-    catch (error){
-        //"API failed to load the pokemons"
-        console.error(error);
-        
-    }    
-}
-
-const getPokemonListByType = async (type) => {
-    try{
-        const res = await fetch(`https://pokeapi.co/api/v2/type/${type}`)
-        const json = await res.json();
-        return json.pokemon.map(el => el.pokemon)
-    }
-    catch (error){
-        //"API failed to load the pokemons"
-        console.error(error);
-        
-    }    
-}
-
-export default async function PokemonList({ids="",query="", limit=20, type=""}){   
+export default function PokemonList({ids="",res,query="", limit=20, type="",unheart=true}){   
 
     const filterPokemons = (pokemons,input) => {
         if (!input) return pokemons
@@ -56,13 +30,14 @@ export default async function PokemonList({ids="",query="", limit=20, type=""}){
             const link = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`
             
             const route = template.replace("<id>",id)
+            // console.log(id);
             
             return (
                 <div key={index} className="pokemonCard">
                     <p>{pokemon.name} #{id}</p>
                     <Link href={route} preload={"false"} key={index}><img src={link} alt={pokemon.name} className="pokemonImg"></img></Link>
                     {/* <i className="fa-solid fa-heart heart"></i> */}
-                    <Heart id={id} list={list}/>
+                    <Heart id={id} list={list} unheart={unheart}/>
                     {/* <img className="heart" src="/heart.png" ></img> */}
                 </div>
             
@@ -76,7 +51,7 @@ export default async function PokemonList({ids="",query="", limit=20, type=""}){
     if (type) template=`${template}type=${type}&`
     if (template.endsWith("&")) template = template.slice(0,-1)
     
-    const res = type? await getPokemonListByType(type): await getPokemonList(1000)
+    
                     
     const pokemons = filterPokemons(res,query).slice(0,limit)
     

@@ -1,21 +1,37 @@
 'use client'
-import PokemonDetails from "./PokemonDetails";
 import dynamic from "next/dynamic";
-// import PokemonList from "./PokemonList";
 const PokemonList = dynamic(() => import("./PokemonList"),{ssr:false})
 import { useState, useEffect } from "react";
 
-export default  function Favorites(){
-    // REFACTOR POKEMONLIST NA NIESYNCHRONICZNE, ŻEBY MÓC DYNAMICZNIE ZAŁADOWAĆ GO TUTAJ
-    const [favs,setFavs] = useState("")
+export default  function Favorites({res}){
+    
 
+    const [favs,setFavs] = useState([])
+    const [list,setList] = useState([]
+
+    )
     useEffect(() => {
         const temp = localStorage.getItem("favorites")
         if (temp) setFavs(temp)
-    })
-    // console.log(fav);
-    return <PokemonList/>
-    // return <PokemonList></PokemonList>
+        window.addEventListener("storageUpdate",() => {
+            setFavs(localStorage.getItem("favorites"))
+        })
+        
+    },[])
+
+    useEffect(() => {
+        
+        
+        setList((favs.length>0)?
+            res.filter((e,i) => {
+                const parts = e.url.split("/");
+                const id = parts[parts.length - 2];     
+                return favs.split(",").includes(id)
+            })
+        :[])
+    },[favs])
+
+    return <PokemonList res={list} unheart={false}/>
     
     
     
