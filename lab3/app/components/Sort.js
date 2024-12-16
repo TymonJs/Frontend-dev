@@ -1,6 +1,9 @@
 'use client'
 
 export default function Sort(){
-    return (<button>
-    </button>)
+    return (<div id="sort">
+    <p>Sort by</p>
+    <button>Name</button>
+    </div>)
+
 }

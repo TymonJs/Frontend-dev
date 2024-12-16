@@ -1,11 +1,12 @@
 $font: "Poppins";
+$font-color: rgb(83, 68, 68);
 * {
     margin: 0;
     padding: 0;
 }
 body{
     font-family: $font;
-    color: rgb(83, 68, 68);
+    color: $font-color;
     background-color: rgb(245, 244, 240);
     padding: 1rem 5rem;
 }
@@ -22,7 +23,7 @@ body{
     margin-bottom: 2rem;
     border-radius: 15px;
     box-shadow: 0 0 25px -15px rgb(131, 124, 124);
-    padding: 2rem 3rem;
+    padding: 2rem 12rem;
     position: relative;
 
 
@@ -104,6 +105,34 @@ body{
             }
         }
     }
+    #sort{
+        position: absolute;
+        left: 3rem;
+        $sort-f-size : 1.5rem;
+        font-size: $sort-f-size;
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+        border-radius: 5px;
+        padding: 0.25rem;
+        background-color: transparent;
+        &:nth-child(2n){
+            background-color: blue;
+
+        }
+        &:nth-child(2n+1){
+            background-color: green;
+
+        }
+        p{
+            background-color: orange;
+        }
+        button{
+            font-size: $sort-f-size;
+            border: none;
+            color: $font-color;
+        }
+    }
 
 }
 #detailContainer{
@@ -170,11 +199,15 @@ a{
     font-weight: 500;
     font-size: 1rem;
     border: 2px inset rgb(118, 118, 118);
+    // text-transform: capitalize;
     // border:none;
     // position: absolute;
     
     option{
         padding: 0.1rem 0.5rem;
+        &:first-child{
+            text-transform: capitalize;
+        }
         &:nth-child(2n){
             background-color: #e7e0c2;
         }

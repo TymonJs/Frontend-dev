@@ -6,6 +6,9 @@ export const metadata = {
 } 
 
 export default function RootLayout({ children }) {    
+  
+  
+
     return <div className="container">
       <div id="search">
       <Dropdown/>

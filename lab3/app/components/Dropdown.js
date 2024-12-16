@@ -1,18 +1,5 @@
 'use client'
 import { useSearchParams, usePathname, useRouter } from "next/navigation"
-// import { useState, useEffect } from "react"
-
-// const getTypes = async () => {
-//     try{
-//         const res = await fetch(`https://pokeapi.co/api/v2/type/`)
-//         const json = await res.json()
-//         return json.results.map(el => el.name)
-//     }
-//     catch{
-//         console.log("Failed to load the list of types");
-//     } 
-    
-// }
 
 export default function Dropdown(){
     const searchParams = useSearchParams()
@@ -28,7 +15,7 @@ export default function Dropdown(){
         'rock',     'steel',  'stellar',
         'unknown',  'water'
       ]
-
+      
     const handleType = (type) => {
         
         const params = new URLSearchParams(searchParams)

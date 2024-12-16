@@ -24,7 +24,7 @@ body {
   margin-bottom: 2rem;
   border-radius: 15px;
   box-shadow: 0 0 25px -15px rgb(131, 124, 124);
-  padding: 2rem 3rem;
+  padding: 2rem 12rem;
   position: relative;
 }
 .container #search {
@@ -94,6 +94,31 @@ body {
   color: red;
   display: block;
 }
+.container #sort {
+  position: absolute;
+  left: 3rem;
+  font-size: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  border-radius: 5px;
+  padding: 0.25rem;
+  background-color: transparent;
+}
+.container #sort:nth-child(2n) {
+  background-color: blue;
+}
+.container #sort:nth-child(2n+1) {
+  background-color: green;
+}
+.container #sort p {
+  background-color: orange;
+}
+.container #sort button {
+  font-size: 1.5rem;
+  border: none;
+  color: rgb(83, 68, 68);
+}
 
 #detailContainer {
   font-size: 1.15rem;
@@ -159,6 +184,9 @@ a {
 }
 #dropdown option {
   padding: 0.1rem 0.5rem;
+}
+#dropdown option:first-child {
+  text-transform: capitalize;
 }
 #dropdown option:nth-child(2n) {
   background-color: #e7e0c2;

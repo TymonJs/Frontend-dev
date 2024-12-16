@@ -9,4 +9,4 @@ const types = [
   ]
 
 types.sort()
-console.log(types);
+console.log("type");
