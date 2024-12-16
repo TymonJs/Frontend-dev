@@ -3,7 +3,7 @@ import dynamic from "next/dynamic";
 const PokemonList = dynamic(() => import("./PokemonList"),{ssr:false})
 import { useState, useEffect } from "react";
 
-export default  function Favorites({res}){
+export default  function Favorites({res, sort}){
     
 
     const [favs,setFavs] = useState([])
@@ -31,8 +31,6 @@ export default  function Favorites({res}){
         :[])
     },[favs])
 
-    return <PokemonList res={list} unheart={false}/>
-    
-    
-    
+    return <PokemonList res={list} unheart={false} sort={sort}/>
+       
 }

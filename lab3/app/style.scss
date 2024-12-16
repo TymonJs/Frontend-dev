@@ -105,34 +105,6 @@ body{
             }
         }
     }
-    #sort{
-        position: absolute;
-        left: 3rem;
-        $sort-f-size : 1.5rem;
-        font-size: $sort-f-size;
-        display: flex;
-        flex-direction: column;
-        gap: 0.25rem;
-        border-radius: 5px;
-        padding: 0.25rem;
-        background-color: transparent;
-        &:nth-child(2n){
-            background-color: blue;
-
-        }
-        &:nth-child(2n+1){
-            background-color: green;
-
-        }
-        p{
-            background-color: orange;
-        }
-        button{
-            font-size: $sort-f-size;
-            border: none;
-            color: $font-color;
-        }
-    }
 
 }
 #detailContainer{
@@ -199,7 +171,7 @@ a{
     font-weight: 500;
     font-size: 1rem;
     border: 2px inset rgb(118, 118, 118);
-    // text-transform: capitalize;
+    text-transform: capitalize;
     // border:none;
     // position: absolute;
     
@@ -251,3 +223,7 @@ select::-webkit-scrollbar {
 
 
     
+#sort{
+    position: absolute;
+    left: 3rem;
+}

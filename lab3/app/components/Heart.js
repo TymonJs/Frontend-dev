@@ -2,10 +2,9 @@
 
 import { useState, useEffect } from "react"
 
-export default function Heart({id,list,unheart}){
+export default function Heart({id, list,unheart}){
     
     const updateFavorites = (e,unheart) => {
-        console.log("asd");
         
         const favs = localStorage.getItem("favorites")
 
@@ -32,13 +31,14 @@ export default function Heart({id,list,unheart}){
     }
     const [cl,setCl] = useState("")
     useEffect(() => {    
-        // console.log(localStorage.getItem("favorites").split(",").includes(id)?"favorite":"")
         setCl(localStorage.getItem("favorites").split(",").includes(id)?"favorite":"")
+        
     },[id])
   
     
     return <i className={`fa-solid fa-heart heart ${cl}`} onClick={(e) => {
         updateFavorites(e,unheart)
+        setCl(localStorage.getItem("favorites").split(",").includes(id)?"favorite":"")
         window.dispatchEvent(new Event("storageUpdate"))
         }}>
 

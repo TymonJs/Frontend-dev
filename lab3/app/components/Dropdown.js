@@ -1,36 +1,26 @@
 'use client'
 import { useSearchParams, usePathname, useRouter } from "next/navigation"
 
-export default function Dropdown(){
+export default function Dropdown({list,name}){
     const searchParams = useSearchParams()
     const urlPath = usePathname()
     const {replace} = useRouter()
-
-    const types = [
-        'bug',      'dark',   'dragon',
-        'electric', 'fairy',  'fighting',
-        'fire',     'flying', 'ghost',
-        'grass',    'ground', 'ice',
-        'normal',   'poison', 'psychic',
-        'rock',     'steel',  'stellar',
-        'unknown',  'water'
-      ]
-      
-    const handleType = (type) => {
+    
+    const handleChange = (el) => {
         
         const params = new URLSearchParams(searchParams)
-        if (type==="Type") params.delete('type')
-        else if (type) params.set("type",type)
-        else params.delete("type")
+        if (el===name) params.delete(name)
+        else if (el) params.set(name,el)
+        else params.delete(name)
         
         replace(`${urlPath}?${params.toString()}`)
     }
-    const defaultValue = new URLSearchParams(searchParams).get("type")
+    const defaultValue = new URLSearchParams(searchParams).get(name)
     
     return (<>
-        <select id="dropdown" defaultValue={defaultValue?defaultValue:"Type"} onChange={(event) => {handleType(event.target.options[event.target.selectedIndex].innerHTML)}}>
-            <option value="Type" key="0">Type</option>
-            {types.map((el,i) => <option key={i+1}>{el}</option>) }
+        <select id="dropdown" defaultValue={defaultValue?defaultValue:name} onChange={(event) => {handleChange(event.target.options[event.target.selectedIndex].innerHTML)}}>
+            <option key="0">{name}</option>
+            {list.map((el,i) => <option key={i+1}>{el}</option>) }
         </select>
 </>)
 }

@@ -94,31 +94,6 @@ body {
   color: red;
   display: block;
 }
-.container #sort {
-  position: absolute;
-  left: 3rem;
-  font-size: 1.5rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
-  border-radius: 5px;
-  padding: 0.25rem;
-  background-color: transparent;
-}
-.container #sort:nth-child(2n) {
-  background-color: blue;
-}
-.container #sort:nth-child(2n+1) {
-  background-color: green;
-}
-.container #sort p {
-  background-color: orange;
-}
-.container #sort button {
-  font-size: 1.5rem;
-  border: none;
-  color: rgb(83, 68, 68);
-}
 
 #detailContainer {
   font-size: 1.15rem;
@@ -181,6 +156,7 @@ a {
   font-weight: 500;
   font-size: 1rem;
   border: 2px inset rgb(118, 118, 118);
+  text-transform: capitalize;
 }
 #dropdown option {
   padding: 0.1rem 0.5rem;
@@ -222,4 +198,9 @@ select::-webkit-scrollbar-thumb:hover {
   font-size: 1rem;
   width: 3rem;
   border: 2px inset rgb(118, 118, 118);
+}
+
+#sort {
+  position: absolute;
+  left: 3rem;
 }/*# sourceMappingURL=style.css.map */

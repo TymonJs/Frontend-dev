@@ -2,7 +2,7 @@ import Link from 'next/link';
 import "@fortawesome/fontawesome-free/css/all.css";
 import Heart from './Heart';
 
-export default function PokemonList({ids="",res,query="", limit=20, type="",unheart=true}){   
+export default function PokemonList({res,query="", limit=20, type="",unheart=true,sort=""}){   
 
     const filterPokemons = (pokemons,input) => {
         if (!input) return pokemons
@@ -30,15 +30,12 @@ export default function PokemonList({ids="",res,query="", limit=20, type="",unhe
             const link = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`
             
             const route = template.replace("<id>",id)
-            // console.log(id);
             
             return (
                 <div key={index} className="pokemonCard">
                     <p>{pokemon.name} #{id}</p>
                     <Link href={route} preload={"false"} key={index}><img src={link} alt={pokemon.name} className="pokemonImg"></img></Link>
-                    {/* <i className="fa-solid fa-heart heart"></i> */}
                     <Heart id={id} list={list} unheart={unheart}/>
-                    {/* <img className="heart" src="/heart.png" ></img> */}
                 </div>
             
                 
@@ -49,16 +46,17 @@ export default function PokemonList({ids="",res,query="", limit=20, type="",unhe
     if (query) template=`${template}search=${query}&`
     if (limit) template=`${template}limit=${limit}&`
     if (type) template=`${template}type=${type}&`
+    if (sort) template=`${template}type=${sort}&`
     if (template.endsWith("&")) template = template.slice(0,-1)
     
     
-                    
     const pokemons = filterPokemons(res,query).slice(0,limit)
+    const out = getList(pokemons)
     
     return <>
         
         <div id="pokemonList">
-        {getList(pokemons)}
+        {out}
         </div>
     </>
    
