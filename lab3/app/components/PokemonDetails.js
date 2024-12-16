@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-export default async function PokemonDetails ({id, view}){
+export default async function PokemonDetails ({id}){
     
     const getPokemonDetails = async (id) => {
         try{

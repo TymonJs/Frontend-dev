@@ -5,6 +5,7 @@ export const metadata = {
 } 
 export default function RootLayout({ children }) {
   return (<div className="container">
+    <Dropdown list={["name","name-back","id","id-back"]} name="sort"/>
     {children}
 </div>);
 }

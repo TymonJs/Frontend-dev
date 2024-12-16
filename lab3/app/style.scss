@@ -27,6 +27,7 @@ body{
     position: relative;
 
 
+
     #search {
         display: flex;
         justify-content: space-between;
@@ -223,7 +224,7 @@ select::-webkit-scrollbar {
 
 
     
-#sort{
+.sort{
     position: absolute;
     left: 3rem;
 }

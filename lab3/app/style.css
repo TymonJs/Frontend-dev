@@ -200,7 +200,7 @@ select::-webkit-scrollbar-thumb:hover {
   border: 2px inset rgb(118, 118, 118);
 }
 
-#sort {
+.sort {
   position: absolute;
   left: 3rem;
 }/*# sourceMappingURL=style.css.map */

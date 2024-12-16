@@ -31,6 +31,6 @@ export default  function Favorites({res, sort}){
         :[])
     },[favs])
 
-    return <PokemonList res={list} unheart={false} sort={sort}/>
+    return <PokemonList res={list} unheart={false} sort={sort} view={"stats"}/>
        
 }

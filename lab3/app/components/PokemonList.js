@@ -2,7 +2,7 @@ import Link from 'next/link';
 import "@fortawesome/fontawesome-free/css/all.css";
 import Heart from './Heart';
 
-export default function PokemonList({res,query="", limit=20, type="",unheart=true,sort=""}){   
+export default function PokemonList({res,query="", limit=20, type="",unheart=true,sort="", view=""}){   
 
     const filterPokemons = (pokemons,input) => {
         if (!input) return pokemons
@@ -43,12 +43,40 @@ export default function PokemonList({res,query="", limit=20, type="",unheart=tru
         })
     }
     let template = "/pokemon/<id>?"
-    if (query) template=`${template}search=${query}&`
-    if (limit) template=`${template}limit=${limit}&`
-    if (type) template=`${template}type=${type}&`
-    if (sort) template=`${template}type=${sort}&`
-    if (template.endsWith("&")) template = template.slice(0,-1)
+    if (view) template=`${template}view=${view}`
+    else{
+        if (query) template=`${template}search=${query}&`
+        if (limit && limit!=20) template=`${template}limit=${limit}&`
+        if (type) template=`${template}type=${type}&`
+        if (sort) template=`${template}sort=${sort}&`
+        if (template.endsWith("&")) template = template.slice(0,-1) 
+    }
     
+    if (sort==="name" || sort==="name-back"){
+        res.sort((a,b) => {
+            if (a.name<b.name) return -1
+            if (a.name>b.name) return 1
+            return 0
+        })
+        
+        if (sort==="name-back") res.reverse()
+    }
+    else if (sort==="id" || sort==="id-back"){
+        res.sort((a,b) => {
+            
+            const p1 = a.url.split("/")
+            const p2 = b.url.split("/")
+            
+            const id1 = parseInt(p1[p1.length-2])
+            const id2 = parseInt(p2[p2.length-2])
+            
+            if (id1<id2) return -1
+            if (id1>id2) return 1
+            return 0
+        })
+        if (sort==="id-back") res.reverse()
+    }
+
     
     const pokemons = filterPokemons(res,query).slice(0,limit)
     const out = getList(pokemons)
