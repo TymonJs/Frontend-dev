@@ -30,8 +30,13 @@ export default function Heart({id, list,unheart}){
         if (unheart) e.target.classList.toggle("favorite")
     }
     const [cl,setCl] = useState("")
-    useEffect(() => {    
-        setCl(localStorage.getItem("favorites").split(",").includes(id)?"favorite":"")
+    useEffect(() => { 
+        try{
+            setCl(localStorage.getItem("favorites").split(",").includes(id)?"favorite":"")
+        }   
+        catch{
+            localStorage.setItem("favorite","")
+        }
         
     },[id])
   
