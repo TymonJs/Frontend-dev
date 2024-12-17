@@ -24,7 +24,7 @@ body {
   margin-bottom: 2rem;
   border-radius: 15px;
   box-shadow: 0 0 25px -15px rgb(131, 124, 124);
-  padding: 2rem 12rem;
+  padding: 2rem 8rem;
   position: relative;
 }
 .container #search {
