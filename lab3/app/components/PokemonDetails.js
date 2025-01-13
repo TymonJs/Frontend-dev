@@ -20,22 +20,11 @@ export default async function PokemonDetails ({id}){
     </div>)
 
     const pokemonDetails = await getPokemonDetails(id)
+    if (!pokemonDetails) return (<div id="detailContainer">
+        <h2>Pokemon of id '{id}' was not found</h2>
+    </div>)
     
     const {name, sprites: {front_default}, types, weight, height, stats} = pokemonDetails;
-
-    // const detailElements = []
-    // // console.log(view);
-    // const t = <p key="0"><strong>Types: </strong>{types.map(el => el.type.name).join(', ')}</p>
-    // const h = <p key="1"><strong>Height: </strong>{height}</p>
-    // const w = <p key="2"><strong>Weight: </strong>{weight}</p>
-    // const s = stats.map((el,i) => <p key={i+3}><strong>{el.stat.name}: </strong>{el.base_stat}</p>)
-    
-    // if (!view) detailElements.push(t,h,w,s)
-
-    // else if (view=="types") detailElements.push(t)
-    // else if (view=="height" ) detailElements.push(h)
-    // else if (view=="weight") detailElements.push(w)
-    // else if (view=="stats" ) detailElements.push(s)
 
     return <div id="detailContainer">
         <div id="pokemonImageBox">

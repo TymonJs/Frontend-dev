@@ -51,7 +51,6 @@ body {
   background-color: rgb(245, 244, 240);
   padding: 1rem;
   border-radius: 15px;
-  flex: 1;
   white-space: nowrap;
   display: flex;
   flex-direction: column;
@@ -203,4 +202,111 @@ select::-webkit-scrollbar-thumb:hover {
 .sort {
   position: absolute;
   left: 3rem;
+}
+
+#compare {
+  padding: 0.4rem 0.25rem;
+  border-radius: 15px;
+  border: 2px solid grey;
+  background-color: rgb(245, 244, 240);
+  position: absolute;
+  left: 0.75rem;
+  bottom: 0.5rem;
+}
+#compare:hover {
+  cursor: pointer;
+  transform: scale(1.05);
+}
+
+.centered {
+  text-align: center;
+}
+
+.compare-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.compare-container a button {
+  border-radius: 15px;
+  padding: 1rem;
+  border: none;
+  background-color: beige;
+  border: 1px solid black;
+}
+.compare-container a button:hover {
+  transform: scale(1.05);
+  cursor: pointer;
+}
+.compare-container h1 {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+}
+.compare-container .pokemon-display {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+.compare-container .pokemon-display .pokemon {
+  text-align: center;
+}
+.compare-container .pokemon-display .pokemon img {
+  width: 10rem;
+  border-radius: 15px;
+  padding: 0.5rem;
+  background-color: beige;
+}
+.compare-container .pokemon-display .pokemon img:hover {
+  transform: scale(1.05);
+  cursor: pointer;
+}
+.compare-container .pokemon-display .pokemon h2 {
+  margin-top: 0.5rem;
+  font-size: 1.25rem;
+  text-transform: capitalize;
+  font-weight: 600;
+}
+.compare-container table {
+  width: 100%;
+  max-width: 600px;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+.compare-container table thead {
+  background-color: #ebc1a0;
+}
+.compare-container table thead th {
+  border: 1px solid #ccc;
+  padding: 0.75rem;
+  text-align: left;
+  font-size: 1rem;
+  text-transform: capitalize;
+}
+.compare-container table tbody tr:nth-child(2n) {
+  background-color: #e7e0c2;
+}
+.compare-container table tbody tr:nth-child(2n+1) {
+  background-color: #f5f3eb;
+}
+.compare-container table tbody td {
+  border: 1px solid #ccc;
+  padding: 0.75rem;
+  text-align: left;
+  font-size: 0.9rem;
+}
+.compare-container table tbody td::first-letter {
+  text-transform: capitalize;
+}
+.compare-container table tbody td.green {
+  color: #28a745;
+  font-weight: bold;
+}
+.compare-container table tbody td.red {
+  color: #dc3545;
+  font-weight: bold;
+}
+.compare-container table tbody td.neutral {
+  color: #6c757d;
 }/*# sourceMappingURL=style.css.map */

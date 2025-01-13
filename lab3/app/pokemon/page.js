@@ -1,6 +1,8 @@
 import PokemonList from "../components/PokemonList"
-// import PokemonDetails from "../components/PokemonDetails";
-import {getPokemonList, getPokemonListByType} from "../public/getList"
+import Dropdown from "../components/Dropdown"
+import Input from "../components/Input"
+import LimitBar from "../components/LimitBar"
+import { types } from "../consts/consts"
 
 
 export default async function Pokemons({searchParams}){
@@ -9,10 +11,13 @@ export default async function Pokemons({searchParams}){
     const {search="", limit = 20, type=""} = temp
 
     // if (view=="stats")
-    const res = type? await getPokemonListByType(type): await getPokemonList(1000)
-    return <>
-        {/* <PokemonDetails /> */}
-        <PokemonList query={search} limit={limit} type={type} res={res}/>
-    </>
+    return <div className="container">
+        <div id="search">
+            <Dropdown list={types} name={"type"}/>
+            <Input/>
+            <LimitBar/>
+        </div>
+        <PokemonList query={search} limit={limit} type={type}/>
+    </div>
     
 }

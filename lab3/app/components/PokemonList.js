@@ -1,8 +1,35 @@
+'use client'
 import Link from 'next/link';
 import "@fortawesome/fontawesome-free/css/all.css";
 import Heart from './Heart';
+import { useEffect, useState } from 'react';
+import { getPokemonList, getPokemonListByType } from '../public/getList';
 
-export default function PokemonList({res,query="", limit=20, type="",unheart=true,sort="", view=""}){   
+export default function PokemonList({currId=null,favs=null,query="", limit=20, type="",unheart=true,sort="", view=""}){   
+    
+    const [f,setF] = useState(favs)
+    const [list, setList] = useState(favs?favs:[])
+
+    useEffect(() => {
+        const filters = localStorage.getItem("filters")
+        const query = filters?filters.query:""
+        const limit = filters?filters.limit:""
+        const type = filters?filters.type:""
+
+    },[])
+
+    useEffect(() => {
+        const filters = {query,limit,type}
+        localStorage.setItem("filters",JSON.stringify(filters))
+        if (favs==null){
+            
+            const temp = type? getPokemonListByType(type): getPokemonList(1000)
+            temp.then(r => setList(r))
+        } else{
+            setList(favs)
+        }
+        
+    },[type,query,sort,limit,favs])
 
     const filterPokemons = (pokemons,input) => {
         if (!input) return pokemons
@@ -35,6 +62,7 @@ export default function PokemonList({res,query="", limit=20, type="",unheart=tru
                 <div key={index} className="pokemonCard">
                     <p>{pokemon.name} #{id}</p>
                     <Link href={route} preload={"false"} key={index}><img src={link} alt={pokemon.name} className="pokemonImg"></img></Link>
+                    {currId?<Link href={`/pokemon/${currId}/${id}`}><button id="compare">Compare</button></Link>:null}
                     <Heart id={id} list={list} unheart={unheart}/>
                 </div>
             
@@ -53,16 +81,16 @@ export default function PokemonList({res,query="", limit=20, type="",unheart=tru
     }
     
     if (sort==="name" || sort==="name-back"){
-        res.sort((a,b) => {
+        list.sort((a,b) => {
             if (a.name<b.name) return -1
             if (a.name>b.name) return 1
             return 0
         })
         
-        if (sort==="name-back") res.reverse()
+        if (sort==="name-back") list.reverse()
     }
     else if (sort==="id" || sort==="id-back"){
-        res.sort((a,b) => {
+        list.sort((a,b) => {
             
             const p1 = a.url.split("/")
             const p2 = b.url.split("/")
@@ -74,11 +102,11 @@ export default function PokemonList({res,query="", limit=20, type="",unheart=tru
             if (id1>id2) return 1
             return 0
         })
-        if (sort==="id-back") res.reverse()
+        if (sort==="id-back") list.reverse()
     }
 
     
-    const pokemons = filterPokemons(res,query).slice(0,limit)
+    const pokemons = filterPokemons(list,query).slice(0,limit)
     const out = getList(pokemons)
     
     return <>

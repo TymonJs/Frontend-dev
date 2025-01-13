@@ -54,7 +54,6 @@ body{
             background-color: rgb(245, 244, 240);
             padding: 1rem;
             border-radius: 15px;
-            flex: 1;
             white-space: nowrap;
             display: flex;
             flex-direction: column;
@@ -175,7 +174,6 @@ a{
     text-transform: capitalize;
     // border:none;
     // position: absolute;
-    
     option{
         padding: 0.1rem 0.5rem;
         &:first-child{
@@ -221,10 +219,133 @@ select::-webkit-scrollbar {
     width: 3rem;
     border: 2px inset rgb(118, 118, 118);
 }
-
-
-    
+   
 .sort{
     position: absolute;
     left: 3rem;
 }
+
+#compare{
+    padding: 0.4rem 0.25rem;
+    border-radius: 15px;
+    border: 2px solid grey;
+    background-color: rgb(245, 244, 240);
+    position: absolute;
+    left: .75rem;
+    bottom: .5rem;
+    &:hover{
+        cursor: pointer;
+        transform: scale(1.05);
+    }
+}
+.centered{
+    text-align: center;
+}
+.compare-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    a{
+        button{
+            border-radius: 15px;
+            padding: 1rem;
+            border: none;
+            background-color: beige;
+            border:1px solid black;
+            &:hover{
+                transform: scale(1.05);
+                cursor: pointer;
+            }
+        }
+    }
+  
+    h1 {
+      font-size: 2rem;
+      font-weight: bold;
+      margin-bottom: 1.5rem;
+    }
+  
+    .pokemon-display {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-bottom: 2rem;
+  
+      .pokemon {
+        text-align: center;
+  
+        img {
+          width: 10rem;
+          border-radius: 15px;
+          padding: 0.5rem;
+          background-color: beige;
+          &:hover{
+            transform: scale(1.05);
+            cursor: pointer;
+          }
+        }
+  
+        h2 {
+          margin-top: 0.5rem;
+          font-size: 1.25rem;
+          text-transform: capitalize;
+          font-weight: 600;
+        }
+      }
+    }
+  
+    table {
+        width: 100%;
+        max-width: 600px;
+        border-collapse: collapse;
+        margin-top: 1rem;
+
+        thead {
+            background-color: #ebc1a0;
+
+            th {
+                border: 1px solid #ccc;
+                padding: 0.75rem;
+                text-align: left;
+                font-size: 1rem;
+                text-transform: capitalize;
+            }
+        }
+
+        tbody {
+            tr {
+                &:nth-child(2n){
+                    background-color: #e7e0c2;
+                }
+                &:nth-child(2n+1){
+                    background-color: #f5f3eb;
+                }
+            }
+
+            td {
+                &::first-letter{
+                text-transform: capitalize;
+                }
+                border: 1px solid #ccc;
+                padding: 0.75rem;
+                text-align: left;
+                font-size: 0.9rem;
+
+                &.green {
+                color: #28a745;
+                font-weight: bold;
+                }
+
+                &.red {
+                color: #dc3545;
+                font-weight: bold;
+                }
+
+                &.neutral {
+                color: #6c757d;
+                }
+            }
+        }
+    }
+  }

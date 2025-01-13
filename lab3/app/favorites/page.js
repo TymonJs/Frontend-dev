@@ -7,8 +7,8 @@ export default async function FavoritesPage({searchParams}){
     
     const {sort=""} = temp
 
-    const res = await getPokemonList(1000)
-    return <Favorites res={res} sort={sort}/>
+    
+    return <Favorites sort={sort}/>
         {/* <PokemonDetails /> */}
         {/* <PokemonList query={search} limit={limit} type={type}/> */}
     
